@@ -31,4 +31,8 @@ select min(salary), Department from hrdataset_v14 group by Department ;
 select count(EmpID),TermReason from hrdataset_v14 
 group by TermReason order by count(EmpID) desc ;
 
+# Number of Employees in each department
+select count(EmpID), Department from hrdataset_v14 
+group by Department order by count(EmpID) desc ;
+
 

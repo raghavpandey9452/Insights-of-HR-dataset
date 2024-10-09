@@ -61,7 +61,28 @@ max(Salary) over(partition by Department ) as max_salary
  rank() over(partition by Department order by salary desc ) as most_earning
  from hrdataset_v14) x
  where x.most_earning<4;
+
+
+# Use of stored procedure for all employess having good performance
+delimiter $$
+create procedure top_per_emp()
+begin 
+select * from hrdataset_v14 where PerfScoreID > 3;
+End $$
+delimiter ;
+call top_per_emp(e) ;
+
+
+# using VIEW to create a sub table
+create view absentia
+as 
+select * from hrdataset_v14 where Absences>10; #now we can use adsentia table to perform analysis over data
+select * from absentia  where PerfScoreID<3 ;# to know how much absence of employee affect performance
+
  
+ 
+
+
 
  
 
